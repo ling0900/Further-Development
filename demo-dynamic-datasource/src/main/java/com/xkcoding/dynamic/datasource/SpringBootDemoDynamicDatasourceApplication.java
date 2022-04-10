@@ -34,7 +34,7 @@ public class SpringBootDemoDynamicDatasourceApplication implements CommandLineRu
 
     @Override
     public void run(String... args) {
-        // 设置默认的数据源
+        // 设置默认的数据源.
         DatasourceConfigContextHolder.setDefaultDatasource();
         // 查询所有数据库配置列表
         List<DatasourceConfig> datasourceConfigs = configMapper.selectAll();
