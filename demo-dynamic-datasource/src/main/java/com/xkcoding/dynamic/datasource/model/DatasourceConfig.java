@@ -1,6 +1,7 @@
 package com.xkcoding.dynamic.datasource.model;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import java.io.Serializable;
  * @author yangkai.shen
  * @date Created in 2019-09-04 10:58
  */
+@Slf4j
 @Data
 @Table(name = "datasource_config")
 public class DatasourceConfig implements Serializable {
@@ -63,7 +65,9 @@ public class DatasourceConfig implements Serializable {
      * @return JDBC URL
      */
     public String buildJdbcUrl() {
-        return String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=utf-8&useSSL=false", this.host, this.port, this.database);
+        String url = String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC", this.host, this.port, this.database);
+        log.info("配置的数据源url，{}", url);
+        return url;
     }
 
 }
